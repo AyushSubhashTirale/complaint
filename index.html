@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GovSocial | Heavenly Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="login-page" class="auth-wrapper">
+        <div class="auth-card">
+            <div class="logo">🏛️ GovSocial</div>
+            <h2 id="auth-title">Welcome Home</h2>
+            <p style="color: #666; margin-bottom: 30px;">Your voice matters. Sign in to contribute.</p>
+            
+            <form id="auth-form">
+                <input type="email" id="email" placeholder="Email Address" required>
+                <input type="password" id="password" placeholder="Password" required>
+                
+                <div id="role-container" class="hidden">
+                    <label style="display:block; text-align:left; font-size:13px; margin: 10px 0 5px 5px;">Register as:</label>
+                    <select id="role">
+                        <option value="user">Citizen (Report Issues)</option>
+                        <option value="gov">Government (Resolve Issues)</option>
+                    </select>
+                </div>
+
+                <button type="submit" id="auth-btn" class="btn-primary">Sign In</button>
+            </form>
+            
+            <p id="toggle-text">
+                Don't have an account? <a href="javascript:void(0)" onclick="toggleAuth()">Create Account</a>
+            </p>
+        </div>
+    </div>
+
+    <div id="main-app" class="hidden">
+        <nav class="navbar">
+            <div class="nav-content">
+                <span class="brand">🏛️ GovSocial</span>
+                
+                <div class="nav-right">
+                    <span id="role-badge" class="badge"></span>
+                    <span id="user-display"></span>
+                    <button onclick="logout()" class="btn-logout">Logout</button>
+                </div>
+            </div>
+        </nav>
+
+        <div class="app-grid">
+            <aside class="sidebar">
+                <div class="card stats-card">
+                    <h3>Impact Hub</h3>
+                    <p>Issues Reported: <b id="stat-total">0</b></p>
+                    <p>Successfully Resolved: <b id="stat-resolved">0</b></p>
+                </div>
+            </aside>
+
+            <section class="feed-area">
+                <div id="post-box" class="card post-box hidden">
+                    <h3>Report an Issue</h3>
+                    <textarea id="post-text" placeholder="Please explain the issue in detail. Your report helps the community grow..."></textarea>
+                    
+                    <div class="post-actions">
+                        <label class="file-label">
+                            📸 Attach Photo
+                            <input type="file" id="post-image" accept="image/*" hidden>
+                        </label>
+                        <button onclick="handlePostSubmit()" class="btn-primary" style="width: auto; padding: 12px 45px;">Post Complaint</button>
+                    </div>
+                </div>
+
+                <div id="feed-container">
+                    </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyAjvXWkJyvWTO6R-pOyzSOB8WqwU6y94mk",
+    authDomain: "govsocial-84d02.firebaseapp.com",
+    projectId: "govsocial-84d02",
+    storageBucket: "govsocial-84d02.firebasestorage.app",
+    messagingSenderId: "959022050116",
+    appId: "1:959022050116:web:00e337f067494100da4511",
+    measurementId: "G-SKPE3YLD3P"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
+</body>
+</html>
